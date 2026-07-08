@@ -1,0 +1,262 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#fafafa;
+    color:#333;
+    line-height:1.6;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    position:sticky;
+    top:0;
+    width:100%;
+    background:#ffffff;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    z-index:1000;
+}
+
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo h2{
+    color:#ff6b00;
+    font-size:30px;
+    font-weight:700;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+}
+
+.nav-links li{
+    margin-left:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+    font-weight:500;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#ff6b00;
+}
+
+.join-btn{
+    background:#25D366;
+    color:white;
+    padding:12px 22px;
+    border-radius:40px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.join-btn:hover{
+    background:#1ea952;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+    background:linear-gradient(135deg,#fff6ef,#ffe2cb);
+}
+
+.hero-text{
+    max-width:700px;
+}
+
+.hero h1{
+    font-size:58px;
+    margin-bottom:20px;
+    color:#222;
+}
+
+.hero p{
+    font-size:20px;
+    margin-bottom:18px;
+}
+
+.hero-btn{
+    display:inline-block;
+    margin-top:15px;
+    background:#ff6b00;
+    color:white;
+    text-decoration:none;
+    padding:15px 35px;
+    border-radius:50px;
+    transition:.3s;
+    font-weight:600;
+}
+
+.hero-btn:hover{
+    background:#e55f00;
+    transform:translateY(-2px);
+}
+
+/* ================= SECTION ================= */
+
+section{
+    padding:80px 20px;
+}
+
+section h2{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:25px;
+}
+
+section p{
+    text-align:center;
+    max-width:850px;
+    margin:auto;
+    font-size:18px;
+}
+
+/* ================= FEATURED ================= */
+
+.cards{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card h3{
+    color:#ff6b00;
+    margin-bottom:15px;
+}
+
+.card p{
+    font-size:16px;
+}
+
+/* ================= CTA ================= */
+
+.cta{
+    background:#ff6b00;
+    color:white;
+    text-align:center;
+}
+
+.cta h2{
+    color:white;
+}
+
+.cta p{
+    margin-bottom:30px;
+}
+
+.cta .hero-btn{
+    background:white;
+    color:#ff6b00;
+}
+
+.cta .hero-btn:hover{
+    background:#f1f1f1;
+}
+
+/* ================= CONTACT ================= */
+
+#contact p{
+    margin:10px auto;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    .navbar{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .nav-links li{
+        margin:10px;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .hero{
+        padding:20px;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    section h2{
+        font-size:30px;
+    }
+
+    .hero-btn{
+        padding:13px 28px;
+    }
+
+    .join-btn{
+        width:100%;
+        text-align:center;
+    }
+
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Bansiwala</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .contact-container{
+            max-width:1200px;
+            margin:auto;
+            padding:50px 20px;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:40px;
+        }
+
+        .contact-box,
+        .form-box{
+            background:#fff;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 5px 20px rgba(0,0,0,.1);
+        }
+
+        .contact-box h2,
+        .form-box h2{
+            margin-bottom:20px;
+            color:#ff6b00;
+        }
+
+        .contact-box p{
+            margin:15px 0;
+            text-align:left;
+        }
+
+        form{
+            display:flex;
+            flex-direction:column;
+        }
+
+        input,
+        textarea{
+            padding:15px;
+            margin-bottom:15px;
+            border:1px solid #ddd;
+            border-radius:8px;
+            font-size:16px;
+        }
+
+        textarea{
+            resize:vertical;
+            min-height:140px;
+        }
+
+        button{
+            background:#ff6b00;
+            color:#fff;
+            border:none;
+            padding:15px;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:16px;
+            transition:.3s;
+        }
+
+        button:hover{
+            background:#e65c00;
+        }
+
+        .map{
+            margin-top:50px;
+            max-width:1200px;
+            margin-left:auto;
+            margin-right:auto;
+            padding:0 20px 60px;
+        }
+
+        iframe{
+            width:100%;
+            height:450px;
+            border:0;
+            border-radius:15px;
+        }
+
+        @media(max-width:768px){
+
+            .contact-container{
+                grid-template-columns:1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+<h2>Bansiwala</h2>
+</div>
+
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="menu.html">Menu</a></li>
+<li><a href="gallery.html">Gallery</a></li>
+<li><a href="contact.html" class="active">Contact</a></li>
+</ul>
+
+<a href="https://whatsapp.com/channel/0029VbCbAxzKAwEdVRpKkp0O"
+target="_blank"
+class="join-btn">
+Join WhatsApp
+</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>Contact Bansiwala</h1>
+
+<p>
+We'd love to hear from you.
+</p>
+
+</div>
+
+</section>
+
+<div class="contact-container">
+
+<div class="contact-box">
+
+<h2>Contact Information</h2>
+
+<p><strong>📍 Address:</strong><br>
+Your Kitchen Address</p>
+
+<p><strong>📞 Phone:</strong><br>
++91 98765 43210</p>
+
+<p><strong>📧 Email:</strong><br>
+info@bansiwala.com</p>
+
+<p><strong>🕒 Business Hours:</strong><br>
+Monday - Sunday<br>
+9:00 AM - 11:00 PM</p>
+
+<a href="https://whatsapp.com/channel/0029VbCbAxzKAwEdVRpKkp0O"
+class="hero-btn"
+target="_blank">
+Join WhatsApp Channel
+</a>
+
+</div>
+
+<div class="form-box">
+
+<h2>Send us a Message</h2>
+
+<form>
+
+<input
+type="text"
+placeholder="Your Name"
+required>
+
+<input
+type="email"
+placeholder="Your Email"
+required>
+
+<input
+type="tel"
+placeholder="Phone Number">
+
+<textarea
+placeholder="Your Message"
+required></textarea>
+
+<button type="submit">
+Send Message
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<div class="map">
+
+<h2 style="text-align:center;margin-bottom:25px;">
+Find Us
+</h2>
+
+<iframe
+src="https://www.google.com/maps?q=New+Delhi&output=embed"
+loading="lazy">
+</iframe>
+
+</div>
+
+<footer>
+
+<p>© 2026 Bansiwala. All Rights Reserved.</p>
+
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
+```
