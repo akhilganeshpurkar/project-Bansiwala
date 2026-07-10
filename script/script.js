@@ -1,7 +1,147 @@
-```javascript
-// =========================
-// Bansiwala Website Script
-// =========================
+// ================= CART FUNCTIONALITY =================
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function updateCartUI() {
+    const cartCount = document.getElementById('cartCount');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    
+    if (cartCount) cartCount.textContent = cart.length;
+    
+    if (cartItems) {
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<div class="empty-cart"><p>Your cart is empty</p></div>';
+            cartTotal.textContent = '0';
+        } else {
+            let total = 0;
+            cartItems.innerHTML = cart.map((item, index) => {
+                total += item.price * item.qty;
+                return `
+                    <div class="cart-item">
+                        <div class="item-info">
+                            <h4>${item.name}</h4>
+                            <p>₹${item.price} × ${item.qty}</p>
+                        </div>
+                        <div class="item-actions">
+                            <button class="qty-btn" onclick="decrementQty(${index})">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="incrementQty(${index})">+</button>
+                            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            cartTotal.textContent = total;
+        }
+    }
+    
+    saveCart();
+}
+
+function addToCart(name, price) {
+    const existingItem = cart.find(item => item.name === name);
+    
+    if (existingItem) {
+        existingItem.qty += 1;
+    } else {
+        cart.push({
+            name: name,
+            price: parseInt(price),
+            qty: 1
+        });
+    }
+    
+    updateCartUI();
+    alert(`${name} added to cart!`);
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+}
+
+function incrementQty(index) {
+    cart[index].qty += 1;
+    updateCartUI();
+}
+
+function decrementQty(index) {
+    if (cart[index].qty > 1) {
+        cart[index].qty -= 1;
+    } else {
+        removeFromCart(index);
+    }
+    updateCartUI();
+}
+
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Add to Cart button listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const name = button.dataset.name;
+            const price = button.dataset.price;
+            addToCart(name, price);
+        });
+    });
+    
+    updateCartUI();
+});
+
+// Cart Modal
+const cartModal = document.getElementById('cartModal');
+const cartBtn = document.getElementById('cartBtn');
+const closeBtn = document.querySelector('.close');
+const checkoutBtn = document.getElementById('checkoutBtn');
+
+if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+        cartModal.style.display = 'block';
+        updateCartUI();
+    });
+}
+
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        cartModal.style.display = 'none';
+    });
+}
+
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        const items = cart.map(item => `${item.name} (${item.qty}x ₹${item.price})`).join(', ');
+        const message = `Order from Bansiwala: ${items}. Total: ₹${total}`;
+        
+        const whatsappLink = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+        window.open(whatsappLink, '_blank');
+        
+        cart = [];
+        saveCart();
+        updateCartUI();
+        cartModal.style.display = 'none';
+        alert('Order sent to WhatsApp!');
+    });
+}
+
+window.addEventListener('click', (event) => {
+    if (event.target === cartModal) {
+        cartModal.style.display = 'none';
+    }
+});
+
+// ================= EXISTING FUNCTIONALITY =================
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -166,4 +306,3 @@ if (footer) {
     footer.innerHTML = `© ${year} Bansiwala. All Rights Reserved.`;
 
 }
-```
