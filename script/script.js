@@ -166,4 +166,132 @@ if (footer) {
     footer.innerHTML = `© ${year} Bansiwala. All Rights Reserved.`;
 
 }
+
+// Cart functionality for menu page
+const cartBtn = document.getElementById("cartBtn");
+const cartModal = document.getElementById("cartModal");
+const closeBtn = document.querySelector(".close");
+const cartItemsEl = document.getElementById("cartItems");
+const cartTotalEl = document.getElementById("cartTotal");
+const cartCountEl = document.getElementById("cartCount");
+const checkoutBtn = document.getElementById("checkoutBtn");
+const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+let cart = [];
+
+function formatPrice(value) {
+    return `₹${value.toFixed(2)}`;
+}
+
+function updateCartCount() {
+    if (!cartCountEl) return;
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCountEl.textContent = totalItems;
+}
+
+function renderCart() {
+    if (!cartItemsEl || !cartTotalEl) return;
+
+    cartItemsEl.innerHTML = "";
+
+    if (cart.length === 0) {
+        cartItemsEl.innerHTML = "<p>Your cart is empty.</p>";
+        cartTotalEl.textContent = "0";
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const itemEl = document.createElement("div");
+        itemEl.className = "cart-item";
+        itemEl.innerHTML = `
+            <div>
+                <h4>${item.name}</h4>
+                <p>Qty: ${item.quantity}</p>
+            </div>
+            <div>
+                <span>${formatPrice(itemTotal)}</span>
+            </div>
+        `;
+
+        cartItemsEl.appendChild(itemEl);
+    });
+
+    cartTotalEl.textContent = total.toFixed(2);
+}
+
+function addProductToCart(name, price) {
+    const existingItem = cart.find(item => item.name === name);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ name, price, quantity: 1 });
+    }
+
+    updateCartCount();
+    renderCart();
+}
+
+function openCartModal() {
+    if (!cartModal) return;
+    cartModal.classList.add("open");
+}
+
+function closeCartModal() {
+    if (!cartModal) return;
+    cartModal.classList.remove("open");
+}
+
+if (addToCartButtons.length > 0) {
+    addToCartButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const name = button.dataset.name;
+            const price = Number(button.dataset.price);
+
+            if (!name || Number.isNaN(price)) return;
+
+            addProductToCart(name, price);
+            openCartModal();
+        });
+    });
+}
+
+if (cartBtn) {
+    cartBtn.addEventListener("click", openCartModal);
+}
+
+if (closeBtn) {
+    closeBtn.addEventListener("click", closeCartModal);
+}
+
+if (cartModal) {
+    cartModal.addEventListener("click", event => {
+        if (event.target === cartModal) {
+            closeCartModal();
+        }
+    });
+}
+
+if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", () => {
+        if (cart.length === 0) {
+            alert("Your cart is empty.");
+            return;
+        }
+
+        alert(`Proceeding to checkout with ${cart.reduce((sum, item) => sum + item.quantity, 0)} items. Total: ${formatPrice(cart.reduce((sum, item) => sum + item.price * item.quantity, 0))}`);
+        cart = [];
+        updateCartCount();
+        renderCart();
+        closeCartModal();
+    });
+}
+
+updateCartCount();
+renderCart();
 ```
