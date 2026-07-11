@@ -14,6 +14,7 @@
     <nav class="navbar">
 
         <div class="logo">
+            <img src="images/logo.png" alt="Bansiwala Logo" class="logo-img">
             <h2>Bansiwala</h2>
         </div>
 
@@ -25,6 +26,10 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
 
+        <button class="cart-btn" id="cartBtn">
+            🛒 Cart <span id="cartCount">0</span>
+        </button>
+
         <a href="https://whatsapp.com/channel/0029VbCbAxzKAwEdVRpKkp0O"
            target="_blank"
            class="join-btn">
@@ -33,6 +38,19 @@
 
     </nav>
 </header>
+
+<!-- Cart Modal -->
+<div id="cartModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Your Cart</h2>
+        <div id="cartItems"></div>
+        <div class="cart-total">
+            <h3>Total: ₹<span id="cartTotal">0</span></h3>
+        </div>
+        <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+</div>
 
 <section class="hero">
 
@@ -59,20 +77,112 @@
         <div class="card">
             <h3>Veg Sandwich</h3>
             <p>Fresh vegetables with delicious seasoning.</p>
-            <h3>₹99</h3>
+            <div class="card-footer">
+                <h3 class="price">₹99</h3>
+                <button class="add-to-cart" data-name="Veg Sandwich" data-price="99">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Pav Bhaji</h3>
+            <p>Freshly prepared with butter and vegetables seasoning.</p>
+            <div class="card-footer">
+                <h3 class="price">₹50</h3>
+                <button class="add-to-cart" data-name="Pav Bhaji" data-price="50">Add to Cart</button>
+            </div>
         </div>
 
         <div class="card">
             <h3>French Fries</h3>
             <p>Crispy golden fries served hot.</p>
-            <h3>₹89</h3>
+            <div class="card-footer">
+                <h3 class="price">₹89</h3>
+                <button class="add-to-cart" data-name="French Fries" data-price="89">Add to Cart</button>
+            </div>
         </div>
 
         <div class="card">
             <h3>Paneer Roll</h3>
             <p>Soft roll filled with spicy paneer.</p>
-            <h3>₹149</h3>
+            <div class="card-footer">
+                <h3 class="price">₹149</h3>
+                <button class="add-to-cart" data-name="Paneer Roll" data-price="149">Add to Cart</button>
+            </div>
         </div>
+
+        <div class="card">
+            <h3>Veg Noodles</h3>
+            <p>Soft roll filled with spicy paneer.</p>
+            <div class="card-footer">
+                <h3 class="price">₹149</h3>
+                <button class="add-to-cart" data-name="Veg Noodles" data-price="149">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Veg Manchurian</h3>
+            <p>Soft roll filled with spicy paneer.</p>
+            <div class="card-footer">
+                <h3 class="price">₹149</h3>
+                <button class="add-to-cart" data-name="Veg Manchurian" data-price="149">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Samosa</h3>
+            <p>Soft roll filled with spicy paneer.</p>
+            <div class="card-footer">
+                <h3 class="price">₹149</h3>
+                <button class="add-to-cart" data-name="Samosa" data-price="149">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Aloo Banda</h3>
+            <p>Soft roll filled with spicy paneer.</p>
+            <div class="card-footer">
+                <h3 class="price">₹149</h3>
+                <button class="add-to-cart" data-name="Aloo Banda" data-price="149">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Bhaaji Vada</h3>
+            <p>Soft roll filled with spicy paneer.</p>
+            <div class="card-footer">
+                <h3 class="price">₹149</h3>
+                <button class="add-to-cart" data-name="Bhaaji Vada" data-price="149">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Poha</h3>
+            <p>Soft roll filled with spicy paneer.</p>
+            <div class="card-footer">
+                <h3 class="price">₹149</h3>
+                <button class="add-to-cart" data-name="Poha" data-price="149">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Aloo Chaat</h3>
+            <p>Soft roll filled with spicy paneer.</p>
+            <div class="card-footer">
+                <h3 class="price">₹149</h3>
+                <button class="add-to-cart" data-name="Aloo Chaat" data-price="149">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Paani Puri</h3>
+            <p>Soft roll filled with spicy paneer.</p>
+            <div class="card-footer">
+                <h3 class="price">₹149</h3>
+                <button class="add-to-cart" data-name="Paani Puri" data-price="149">Add to Cart</button>
+            </div>
+        </div>
+
+        
 
     </div>
 
@@ -89,19 +199,28 @@
         <div class="card">
             <h3>Veg Biryani</h3>
             <p>Traditional aromatic biryani.</p>
-            <h3>₹199</h3>
+            <div class="card-footer">
+                <h3 class="price">₹199</h3>
+                <button class="add-to-cart" data-name="Veg Biryani" data-price="199">Add to Cart</button>
+            </div>
         </div>
 
         <div class="card">
             <h3>Paneer Butter Masala</h3>
             <p>Creamy tomato gravy with paneer.</p>
-            <h3>₹249</h3>
+            <div class="card-footer">
+                <h3 class="price">₹249</h3>
+                <button class="add-to-cart" data-name="Paneer Butter Masala" data-price="249">Add to Cart</button>
+            </div>
         </div>
 
         <div class="card">
             <h3>Dal Tadka</h3>
             <p>Yellow lentils with Indian spices.</p>
-            <h3>₹169</h3>
+            <div class="card-footer">
+                <h3 class="price">₹169</h3>
+                <button class="add-to-cart" data-name="Dal Tadka" data-price="169">Add to Cart</button>
+            </div>
         </div>
 
     </div>
@@ -119,19 +238,28 @@
         <div class="card">
             <h3>Masala Chai</h3>
             <p>Freshly brewed Indian tea.</p>
-            <h3>₹30</h3>
+            <div class="card-footer">
+                <h3 class="price">₹30</h3>
+                <button class="add-to-cart" data-name="Masala Chai" data-price="30">Add to Cart</button>
+            </div>
         </div>
 
         <div class="card">
             <h3>Cold Coffee</h3>
             <p>Rich, creamy and refreshing.</p>
-            <h3>₹120</h3>
+            <div class="card-footer">
+                <h3 class="price">₹120</h3>
+                <button class="add-to-cart" data-name="Cold Coffee" data-price="120">Add to Cart</button>
+            </div>
         </div>
 
         <div class="card">
             <h3>Fresh Lime Soda</h3>
             <p>Sweet or salted.</p>
-            <h3>₹70</h3>
+            <div class="card-footer">
+                <h3 class="price">₹70</h3>
+                <button class="add-to-cart" data-name="Fresh Lime Soda" data-price="70">Add to Cart</button>
+            </div>
         </div>
 
     </div>
@@ -149,19 +277,28 @@
         <div class="card">
             <h3>Gulab Jamun</h3>
             <p>Served warm.</p>
-            <h3>₹60</h3>
+            <div class="card-footer">
+                <h3 class="price">₹60</h3>
+                <button class="add-to-cart" data-name="Gulab Jamun" data-price="60">Add to Cart</button>
+            </div>
         </div>
 
         <div class="card">
             <h3>Chocolate Brownie</h3>
             <p>Soft chocolate brownie.</p>
-            <h3>₹110</h3>
+            <div class="card-footer">
+                <h3 class="price">₹110</h3>
+                <button class="add-to-cart" data-name="Chocolate Brownie" data-price="110">Add to Cart</button>
+            </div>
         </div>
 
         <div class="card">
             <h3>Ice Cream</h3>
             <p>Vanilla, Chocolate & Strawberry.</p>
-            <h3>₹80</h3>
+            <div class="card-footer">
+                <h3 class="price">₹80</h3>
+                <button class="add-to-cart" data-name="Ice Cream" data-price="80">Add to Cart</button>
+            </div>
         </div>
 
     </div>
@@ -193,7 +330,7 @@
 
 </footer>
 
-<script src="js/script.js"></script>
+<script src="script/script.js"></script>
 
 </body>
 </html>

@@ -35,10 +35,23 @@ header{
     align-items:center;
 }
 
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-img{
+    width:42px;
+    height:auto;
+    display:block;
+}
+
 .logo h2{
     color:#ff6b00;
     font-size:30px;
     font-weight:700;
+    margin:0;
 }
 
 .nav-links{
