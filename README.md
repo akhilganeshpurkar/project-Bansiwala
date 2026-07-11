@@ -13,6 +13,7 @@ This project was updated to include the following improvements:
   - Modal open/close behavior
   - Checkout alert and cart reset
 - Added cart/modal styles in `css/style.css` for `.modal`, `.cart-item`, and `.checkout-btn`.
+- Improved cart interface, added quantity controls and item removal in `script/script.js`.
 
 ## How to use
 
