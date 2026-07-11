@@ -1,9 +1,8 @@
-```javascript
 // =========================
 // Bansiwala Website Script
 // =========================
 
-document.addEventListener("DOMContentLoaded", () => {
+const init = () => {
     console.log("Bansiwala script loaded");
 
     // Smooth scrolling for navigation links
@@ -169,10 +168,15 @@ document.addEventListener("DOMContentLoaded", () => {
             itemEl.innerHTML = `
                 <div>
                     <h4>${item.name}</h4>
-                    <p>Qty: ${item.quantity}</p>
+                    <div class="qty-controls">
+                        <button class="qty-btn decrease" data-name="${item.name}">-</button>
+                        <span class="qty-value">${item.quantity}</span>
+                        <button class="qty-btn increase" data-name="${item.name}">+</button>
+                    </div>
                 </div>
-                <div>
+                <div class="cart-item-right">
                     <span>${formatPrice(itemTotal)}</span>
+                    <button class="remove-item-btn" data-name="${item.name}">Remove</button>
                 </div>
             `;
 
@@ -180,6 +184,45 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         cartTotalEl.textContent = total.toFixed(2);
+
+        cartItemsEl.querySelectorAll('.remove-item-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.dataset.name;
+                removeProductFromCart(name);
+            });
+        });
+
+        cartItemsEl.querySelectorAll('.qty-btn.increase').forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.dataset.name;
+                changeProductQuantity(name, 1);
+            });
+        });
+
+        cartItemsEl.querySelectorAll('.qty-btn.decrease').forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.dataset.name;
+                changeProductQuantity(name, -1);
+            });
+        });
+    }
+
+    function removeProductFromCart(name) {
+        cart = cart.filter(item => item.name !== name);
+        updateCartCount();
+        renderCart();
+    }
+
+    function changeProductQuantity(name, delta) {
+        const item = cart.find(entry => entry.name === name);
+        if (!item) return;
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+            removeProductFromCart(name);
+            return;
+        }
+        updateCartCount();
+        renderCart();
     }
 
     function addProductToCart(name, price) {
@@ -249,5 +292,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateCartCount();
     renderCart();
-});
-```
+};
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+} else {
+    init();
+}
+
