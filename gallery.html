@@ -29,16 +29,34 @@
             transform:translateY(-8px);
         }
 
-        .gallery-item img{
+        .gallery-item img,
+        .gallery-item video{
             width:100%;
-            height:250px;
+            height:260px;
             object-fit:cover;
             display:block;
             transition:.4s;
+            background:#f5f5f5;
         }
 
-        .gallery-item:hover img{
-            transform:scale(1.08);
+        .gallery-item img.fit-contain {
+            object-fit:contain;
+            padding:16px;
+            background:#fff;
+        }
+
+        .gallery-item video{
+            object-fit:cover;
+            border:0;
+        }
+
+        .gallery-item:hover img,
+        .gallery-item:hover video{
+            transform:scale(1.03);
+        }
+
+        .gallery-item .gallery-caption{
+            min-height:96px;
         }
 
         .gallery-caption{
@@ -103,7 +121,7 @@
     <div class="gallery-container">
 
         <div class="gallery-item">
-            <img src="images/gallery1.jpg" alt="Veg Biryani">
+            <img src="images/Veg Biryani.jpg" alt="Veg Biryani">
             <div class="gallery-caption">
                 <h3>Veg Biryani</h3>
                 <p>Freshly prepared every day.</p>
@@ -111,7 +129,7 @@
         </div>
 
         <div class="gallery-item">
-            <img src="images/gallery2.jpg" alt="Paneer Butter Masala">
+            <img src="images/Paneer Butter Masala.jpg" alt="Paneer Butter Masala">
             <div class="gallery-caption">
                 <h3>Paneer Butter Masala</h3>
                 <p>Rich and creamy favorite.</p>
@@ -119,7 +137,7 @@
         </div>
 
         <div class="gallery-item">
-            <img src="images/gallery3.jpg" alt="Masala Chai">
+            <img class="fit-contain" src="images/Masala Chai.jpg" alt="Masala Chai">
             <div class="gallery-caption">
                 <h3>Masala Chai</h3>
                 <p>Authentic Indian tea.</p>
@@ -127,7 +145,7 @@
         </div>
 
         <div class="gallery-item">
-            <img src="images/gallery4.jpg" alt="Sandwich">
+            <img src="images/Veg Sandwich.jpg" alt="Sandwich">
             <div class="gallery-caption">
                 <h3>Veg Sandwich</h3>
                 <p>Perfect for every craving.</p>
@@ -135,7 +153,7 @@
         </div>
 
         <div class="gallery-item">
-            <img src="images/gallery5.jpg" alt="Dessert">
+            <img src="images/Desserts.jpg" alt="Dessert">
             <div class="gallery-caption">
                 <h3>Desserts</h3>
                 <p>Sweet treats to finish your meal.</p>
@@ -143,10 +161,46 @@
         </div>
 
         <div class="gallery-item">
-            <img src="images/gallery6.jpg" alt="Cold Coffee">
+            <img class="fit-contain" src="images/Cold Coffee.jpg" alt="Cold Coffee">
             <div class="gallery-caption">
                 <h3>Cold Coffee</h3>
                 <p>Refreshing and delicious.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+    <h2>Celebration Hall</h2>
+
+    <div class="gallery-container">
+
+        <div class="gallery-item">
+            <img src="images/Veg Biryani.jpg" alt="Celebration Hall Interior">
+            <div class="gallery-caption">
+                <h3>Elegant Hall Setup</h3>
+                <p>Perfect for birthday parties and family gatherings.</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img class="fit-contain" src="images/Decorated Celebration hall.jpeg" alt="Decorated Event Space">
+            <div class="gallery-caption">
+                <h3>Decorated Event Space</h3>
+                <p>Beautiful ambiance for memorable celebrations.</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <video controls playsinline preload="auto" poster="images/Decorated Celebration hall.jpeg">
+                <source src="videos/Celebration hall.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="gallery-caption">
+                <h3>Hall Tour Video</h3>
+                <p>Watch a quick walkthrough of the celebration hall.</p>
             </div>
         </div>
 
