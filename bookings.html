@@ -107,6 +107,19 @@
     </div>
 </section>
 
+<section class="contact-info-section">
+    <div class="contact-info-card">
+        <h2>Contact Us</h2>
+        <p>Reach out to us for bookings, inquiries, or custom event planning.</p>
+        <ul>
+            <li><strong>Phone:</strong> +91 9970061659</li>
+            <li><strong>Email:</strong> bookings@bansiwala.com</li>
+            <li><strong>Address:</strong> Bansiwala, Main Road, Your City</li>
+            <li><strong>WhatsApp:</strong> <a href="https://whatsapp.com/channel/0029VbCbAxzKAwEdVRpKkp0O" target="_blank">Join our channel</a></li>
+        </ul>
+    </div>
+</section>
+
 <footer>
     <p>© 2026 Bansiwala. All Rights Reserved.</p>
 </footer>
@@ -118,7 +131,23 @@
     if (bookingForm && formMessage) {
         bookingForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            formMessage.textContent = 'Thank you! Your booking request has been received. We will contact you soon.';
+
+            const formData = new FormData(bookingForm);
+            const bookingDetails = [
+                'New Booking Request',
+                `Name: ${formData.get('name') || 'N/A'}`,
+                `Phone: ${formData.get('phone') || 'N/A'}`,
+                `Email: ${formData.get('email') || 'N/A'}`,
+                `Service: ${formData.get('service') || 'N/A'}`,
+                `Event Date: ${formData.get('date') || 'N/A'}`,
+                `Number of Guests: ${formData.get('guests') || 'N/A'}`,
+                `Additional Details: ${formData.get('details') || 'N/A'}`
+            ].join('\n');
+
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(bookingDetails)}`;
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+            formMessage.textContent = 'Thank you! Your booking request has been opened in WhatsApp with the details filled in.';
             bookingForm.reset();
         });
     }

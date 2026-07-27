@@ -581,6 +581,42 @@ section p{
     font-weight:600;
 }
 
+.contact-info-section{
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px 80px;
+}
+
+.contact-info-card{
+    background:#fff;
+    border-radius:24px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.contact-info-card h2{
+    color:#ff6b00;
+    margin-bottom:12px;
+    text-align:left;
+}
+
+.contact-info-card ul{
+    list-style:none;
+    padding:0;
+    margin-top:16px;
+    display:grid;
+    gap:10px;
+}
+
+.contact-info-card a{
+    color:#ff6b00;
+    text-decoration:none;
+}
+
+.contact-info-card a:hover{
+    text-decoration:underline;
+}
+
 @media (max-width: 900px){
     .booking-section{
         grid-template-columns:1fr;
