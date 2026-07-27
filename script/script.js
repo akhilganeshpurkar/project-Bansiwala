@@ -113,6 +113,83 @@ const init = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
+    // Gallery lightbox
+    const lightboxOverlay = document.createElement("div");
+    const lightboxImage = document.createElement("img");
+    const lightboxClose = document.createElement("button");
+
+    lightboxOverlay.id = "lightboxOverlay";
+    lightboxClose.id = "lightboxClose";
+    lightboxClose.type = "button";
+    lightboxClose.textContent = "×";
+
+    Object.assign(lightboxOverlay.style, {
+        position: "fixed",
+        inset: "0",
+        display: "none",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "rgba(0,0,0,0.85)",
+        zIndex: "9999",
+        padding: "20px",
+        overflow: "auto"
+    });
+
+    Object.assign(lightboxImage.style, {
+        maxWidth: "100%",
+        maxHeight: "100%",
+        objectFit: "contain",
+        borderRadius: "12px",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.5)"
+    });
+
+    Object.assign(lightboxClose.style, {
+        position: "absolute",
+        top: "20px",
+        right: "20px",
+        width: "44px",
+        height: "44px",
+        border: "0",
+        borderRadius: "50%",
+        background: "rgba(255,255,255,0.1)",
+        color: "#fff",
+        fontSize: "28px",
+        cursor: "pointer"
+    });
+
+    lightboxOverlay.appendChild(lightboxImage);
+    lightboxOverlay.appendChild(lightboxClose);
+    document.body.appendChild(lightboxOverlay);
+
+    function openLightbox(src, alt) {
+        lightboxImage.src = src;
+        lightboxImage.alt = alt || "Gallery image";
+        lightboxOverlay.style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+        lightboxOverlay.style.display = "none";
+        document.body.style.overflow = "";
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightboxOverlay.addEventListener("click", event => {
+        if (event.target === lightboxOverlay) {
+            closeLightbox();
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && lightboxOverlay.style.display === "flex") {
+            closeLightbox();
+        }
+    });
+
+    document.querySelectorAll(".gallery-item img").forEach(img => {
+        img.addEventListener("click", () => openLightbox(img.src, img.alt));
+    });
+
     // Welcome message
     window.addEventListener("load", () => {
         console.log("Welcome to Bansiwala!");

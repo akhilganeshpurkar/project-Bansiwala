@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings | Bansiwala</title>
+    <meta name="description" content="Book catering services or reserve the celebration hall at Bansiwala.">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/logo.png" alt="Bansiwala Logo" class="logo-img">
+            <h2>Bansiwala</h2>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="bookings.html" class="active">Bookings</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <a href="https://whatsapp.com/channel/0029VbCbAxzKAwEdVRpKkp0O"
+           target="_blank"
+           class="join-btn">
+            Join WhatsApp
+        </a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h1>Book Catering or Celebration Hall</h1>
+        <p>Plan your special occasion with our delicious catering and elegant celebration hall.</p>
+    </div>
+</section>
+
+<section class="booking-section">
+    <div class="booking-info">
+        <h2>Reserve Your Event</h2>
+        <p>Whether you need premium catering for a party or a beautiful space for your celebration, we are here to help.</p>
+
+        <div class="service-cards">
+            <div class="service-card">
+                <h3>Catering Services</h3>
+                <p>Fresh vegetarian meals for birthdays, office events, family gatherings, and more.</p>
+            </div>
+            <div class="service-card">
+                <h3>Celebration Hall</h3>
+                <p>Spacious and welcoming venue for small to medium celebrations and gatherings.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="booking-form-card">
+        <h2>Booking Request Form</h2>
+        <form id="bookingForm">
+            <label>
+                Full Name
+                <input type="text" name="name" placeholder="Your name" required>
+            </label>
+
+            <label>
+                Phone Number
+                <input type="tel" name="phone" placeholder="Your phone number" required>
+            </label>
+
+            <label>
+                Email Address
+                <input type="email" name="email" placeholder="Your email" required>
+            </label>
+
+            <label>
+                Service Needed
+                <select name="service" required>
+                    <option value="">Select one</option>
+                    <option value="Catering Services">Catering Services</option>
+                    <option value="Celebration Hall">Celebration Hall</option>
+                    <option value="Both">Both</option>
+                </select>
+            </label>
+
+            <label>
+                Event Date
+                <input type="date" name="date" required>
+            </label>
+
+            <label>
+                Number of Guests
+                <input type="number" name="guests" min="10" placeholder="Approx. guests" required>
+            </label>
+
+            <label>
+                Additional Details
+                <textarea name="details" rows="4" placeholder="Tell us about your event, menu preferences, or hall requirements"></textarea>
+            </label>
+
+            <button type="submit" class="submit-btn">Request Booking</button>
+            <p id="formMessage" class="form-message">We will contact you shortly to confirm your booking.</p>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Bansiwala. All Rights Reserved.</p>
+</footer>
+
+<script>
+    const bookingForm = document.getElementById('bookingForm');
+    const formMessage = document.getElementById('formMessage');
+
+    if (bookingForm && formMessage) {
+        bookingForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            formMessage.textContent = 'Thank you! Your booking request has been received. We will contact you soon.';
+            bookingForm.reset();
+        });
+    }
+</script>
+
+</body>
+</html>
