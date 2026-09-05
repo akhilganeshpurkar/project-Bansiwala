@@ -210,8 +210,23 @@ const init = () => {
     const cartCountEl = document.getElementById("cartCount");
     const checkoutBtn = document.getElementById("checkoutBtn");
     const addToCartButtons = Array.from(document.querySelectorAll(".add-to-cart"));
+    const CART_STORAGE_KEY = "bansiwalaCart";
+    const CHECKOUT_STORAGE_KEY = "bansiwalaCheckout";
 
-    let cart = [];
+    function loadCart() {
+        try {
+            const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+            return savedCart ? JSON.parse(savedCart) : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function saveCart() {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    }
+
+    let cart = loadCart();
 
     function formatPrice(value) {
         return `₹${value.toFixed(2)}`;
@@ -286,6 +301,7 @@ const init = () => {
 
     function removeProductFromCart(name) {
         cart = cart.filter(item => item.name !== name);
+        saveCart();
         updateCartCount();
         renderCart();
     }
@@ -298,6 +314,7 @@ const init = () => {
             removeProductFromCart(name);
             return;
         }
+        saveCart();
         updateCartCount();
         renderCart();
     }
@@ -310,6 +327,7 @@ const init = () => {
             cart.push({ name, price, quantity: 1 });
         }
 
+        saveCart();
         updateCartCount();
         renderCart();
     }
@@ -359,11 +377,15 @@ const init = () => {
                 alert("Your cart is empty.");
                 return;
             }
-            alert(`Proceeding to checkout with ${cart.reduce((sum, item) => sum + item.quantity, 0)} items. Total: ${formatPrice(cart.reduce((sum, item) => sum + item.price * item.quantity, 0))}`);
-            cart = [];
-            updateCartCount();
-            renderCart();
-            closeCartModal();
+
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const checkoutData = {
+                items: cart,
+                total
+            };
+
+            localStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(checkoutData));
+            window.location.href = "payment.html";
         });
     }
 

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment | Bansiwala</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/logo.png" alt="Bansiwala Logo" class="logo-img">
+            <h2>Bansiwala</h2>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="bookings.html">Bookings</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <a href="menu.html" class="cart-btn">Back to Menu</a>
+    </nav>
+</header>
+
+<main class="payment-page">
+    <div class="payment-card">
+        <div class="payment-header">
+            <h1>Secure Payment</h1>
+            <p>Scan this QR code to pay with UPI only</p>
+        </div>
+
+        <div class="payment-amount" id="paymentAmount">₹0.00</div>
+
+        <div class="qr-box">
+            <img id="qrImage" src="" alt="UPI payment QR code">
+        </div>
+
+        <div class="payment-note">
+            UPI ID: <strong>bansiwala@upi</strong>
+        </div>
+
+        <div class="checkout-items">
+            <h3>Order Summary</h3>
+            <ul id="checkoutItemsList"></ul>
+        </div>
+
+        <button class="payment-btn" id="paidBtn" type="button">I have paid</button>
+    </div>
+</main>
+
+<script>
+    const CART_STORAGE_KEY = 'bansiwalaCart';
+    const CHECKOUT_STORAGE_KEY = 'bansiwalaCheckout';
+    const paymentAmountEl = document.getElementById('paymentAmount');
+    const checkoutItemsListEl = document.getElementById('checkoutItemsList');
+    const qrImageEl = document.getElementById('qrImage');
+    const paidBtn = document.getElementById('paidBtn');
+
+    function formatCurrency(value) {
+        return `₹${Number(value || 0).toFixed(2)}`;
+    }
+
+    function loadCheckoutData() {
+        try {
+            const saved = localStorage.getItem(CHECKOUT_STORAGE_KEY);
+            return saved ? JSON.parse(saved) : { items: [], total: 0 };
+        } catch (error) {
+            return { items: [], total: 0 };
+        }
+    }
+
+    const checkoutData = loadCheckoutData();
+    const items = Array.isArray(checkoutData.items) ? checkoutData.items : [];
+    const total = Number(checkoutData.total || 0);
+
+    paymentAmountEl.textContent = formatCurrency(total);
+
+    if (items.length === 0) {
+        checkoutItemsListEl.innerHTML = '<li><span>No items in this order.</span><span>₹0.00</span></li>';
+    } else {
+        items.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${item.name} x ${item.quantity}</span><span>${formatCurrency(item.price * item.quantity)}</span>`;
+            checkoutItemsListEl.appendChild(li);
+        });
+    }
+
+    const upiId = 'bansiwala@upi';
+    const upiLink = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent('Bansiwala')}&am=${total.toFixed(2)}&cu=INR&tn=${encodeURIComponent('Bansiwala Order Payment')}`;
+    qrImageEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(upiLink)}`;
+
+    paidBtn.addEventListener('click', () => {
+        localStorage.removeItem(CART_STORAGE_KEY);
+        localStorage.removeItem(CHECKOUT_STORAGE_KEY);
+        alert('Payment received. Your order has been placed successfully!');
+        window.location.href = 'menu.html';
+    });
+</script>
+
+</body>
+</html>
